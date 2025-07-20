@@ -26,17 +26,13 @@
   controls.update();
 
   const loader = new OBJLoader();
-  loader.load('model.obj', 
-    (obj) => { scene.add(obj); },
-    undefined,
-    (error) => { console.error('Fehler beim Laden des OBJ:', error); }
-  );
+  loader.load('model.obj', (obj) => { scene.add(obj); }, undefined, (error) => { console.error(error); });
 
   const light = new THREE.DirectionalLight(0xffffff, 1);
   light.position.set(0, 1, 1).normalize();
   scene.add(light);
 
-  function animate(){
+  function animate() {
     requestAnimationFrame(animate);
     controls.update();
     renderer.render(scene, camera);
