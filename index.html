@@ -1,50 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>3D OBJ Viewer</title>
-  <style>
-    body { margin: 0; overflow: hidden; }
-    canvas { display: block; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3D Cube Page</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <script type="module">
-    import * as THREE from './three.module.js';
-    import { OBJLoader } from './OBJLoader.js';
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(0, 1, 1).normalize();
-    scene.add(light);
-
-    const loader = new OBJLoader();
-    loader.load('model.obj', function (object) {
-      object.scale.set(1, 1, 1);
-      scene.add(object);
-    }, undefined, function (error) {
-      console.error('OBJ load error:', error);
-    });
-
-    camera.position.z = 5;
-
-    function animate() {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
-    }
-
-    animate();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-  </script>
+  <h1>Welcome to My 3D Page</h1>
+  <div class="scene">
+    <div class="cube">
+      <div class="face front">Front</div>
+      <div class="face back">Back</div>
+      <div class="face right">Right</div>
+      <div class="face left">Left</div>
+      <div class="face top">Top</div>
+      <div class="face bottom">Bottom</div>
+    </div>
+  </div>
 </body>
 </html>
