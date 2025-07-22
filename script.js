@@ -1,11 +1,16 @@
 const tower = document.querySelector('.tower');
 const blocks = document.querySelectorAll('.block');
 
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  // Move the tower opposite to scroll, and scale depth
-  tower.style.transform = `translateZ(${scrollY * -1}px)`;
+// Positioniere jeden Block in Z-Richtung (wie Turm)
+blocks.forEach((block, i) => {
+  const depth = i * -400; // Abstand zwischen Etagen
+  block.style.transform = `translateZ(${depth}px)`;
 });
 
-// Optional: Set a tall body so we can scroll
-document.body.style.height = `${blocks.length * 100}vh`;
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  tower.style.transform = `translate(-50%, -50%) translateZ(${scrollY * -2}px)`;
+});
+
+// Body-Höhe für Scroll erzeugen
+document.body.style.height = `${blocks.length * 400}px`;
